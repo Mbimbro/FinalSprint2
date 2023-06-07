@@ -1,4 +1,4 @@
-//TaskManager class for managing tasks
+// TaskManager class for managing tasks
 class TaskManager {
   constructor() {
     this.tasks = [];
@@ -10,6 +10,7 @@ class TaskManager {
     const task = this.tasks.find(task => task.id === id);
     if (task) {
       task.status = "Done";
+      this.updateLocalStorage();
     }
   }
 
@@ -23,12 +24,30 @@ class TaskManager {
       dueDate: dueDate,
       status: status,
     });
+    this.updateLocalStorage();
   }
 
   // Method to delete a task
   deleteTask(id) {
     const taskIndex = this.tasks.findIndex(task => task.id === id);
-    this.tasks.splice(taskIndex, 1);
+    if (taskIndex !== -1) {
+      this.tasks.splice(taskIndex, 1);
+      this.updateLocalStorage();
+    }
+  }
+
+  // Method to update the Local Storage with the current tasks
+  updateLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+  }
+
+  // Method to load tasks from Local Storage
+  loadTasksFromLocalStorage() {
+    const tasksData = localStorage.getItem('tasks');
+    if (tasksData) {
+      this.tasks = JSON.parse(tasksData);
+      this.currentId = this.tasks.length;
+    }
   }
 
   // Method to render tasks
@@ -127,7 +146,8 @@ taskTable.addEventListener('click', event => {
   }
 });
 
+// Load tasks from Local Storage
+taskManager.loadTasksFromLocalStorage();
+
 // Render initial tasks
 taskManager.render();
-
-// Other date and clock functions remain the same
