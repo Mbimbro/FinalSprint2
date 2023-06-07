@@ -57,6 +57,30 @@ class TaskManager {
 
     this.tasks.forEach(task => {
       const row = document.createElement('tr');
+
+      // Set task status color
+      let statusColor;
+      switch (task.status) {
+        case 'To Do':
+          statusColor = 'red';
+          break;
+        case 'Done':
+          statusColor = 'green';
+          break;
+        case 'Review':
+          statusColor = 'blue';
+          break;
+        case 'In Progress':
+          statusColor = 'yellow';
+          break;
+        default:
+          statusColor = 'black';
+          break;
+      }
+
+      // Set task row style
+      row.style.color = statusColor;
+
       row.innerHTML = `
         <td>${task.name}</td>
         <td>${task.description}</td>
@@ -118,7 +142,7 @@ function addTask(event) {
   descriptionInput.value = '';
   assignedToInput.value = '';
   dueDateInput.value = '';
-  statusInput.value = 'todo';
+  statusInput.value = 'To Do';
 
   // Render the tasks
   taskManager.render();
