@@ -5,29 +5,30 @@ class TaskManager {
     this.currentId = 0;
   }
 
-  // Method to mark a task as done
-  markTaskAsDone(id) {
-    const taskIndex = this.tasks.findIndex(task => task.id === id);
-    if (taskIndex !== -1) {
-      const doneTask = this.tasks.splice(taskIndex, 1)[0];
-      doneTask.status = "Done";
-      this.tasks.push(doneTask);
-      this.updateLocalStorage();
-    }
+// Method to mark a task as done
+markTaskAsDone(id) {
+  const taskIndex = this.tasks.findIndex(task => task.id === id);
+  if (taskIndex !== -1) {
+    const doneTask = this.tasks.splice(taskIndex, 1)[0];
+    doneTask.status = "done";
+    this.tasks.push(doneTask);
+    this.updateLocalStorage();
   }
+}
+
 
   // Method to add a new task
   addTask(name, description, assignedTo, dueDate, status) {
-  this.tasks.unshift({
-    id: this.currentId++,
-    name: name,
-    description: description,
-    assignedTo: assignedTo,
-    dueDate: dueDate,
-    status: status,
-  });
-  this.updateLocalStorage();
-}
+    this.tasks.push({
+      id: this.currentId++,
+      name: name,
+      description: description,
+      assignedTo: assignedTo,
+      dueDate: dueDate,
+      status: status,
+    });
+    this.updateLocalStorage();
+  }
 
   // Method to delete a task
   deleteTask(id) {
@@ -59,8 +60,8 @@ class TaskManager {
 
     this.tasks.forEach(task => {
       const row = document.createElement('tr');
+
       row.setAttribute('data-status', task.status); // Add data-status attribute
-      row.style.backgroundColor = getStatusColor(task.status); // Set background color based on status
 
       row.innerHTML = `
         <td>${task.name}</td>
@@ -74,7 +75,7 @@ class TaskManager {
           <button class="done-button" data-task-id="${task.id}">Mark as Done</button>
         </td>
       `;
-      
+
       taskListContainer.appendChild(row);
     });
   }
@@ -123,7 +124,7 @@ function addTask(event) {
   descriptionInput.value = '';
   assignedToInput.value = '';
   dueDateInput.value = '';
-  statusInput.value = 'todo';
+  statusInput.value = 'To Do';
 
   // Render the tasks
   taskManager.render();
@@ -134,22 +135,6 @@ function deleteTask(event) {
   const taskId = Number(event.target.dataset.taskId);
   taskManager.deleteTask(taskId);
   taskManager.render();
-}
-
-// Function to get status color based on status
-function getStatusColor(status) {
-  switch (status) {
-    case 'todo':
-      return 'red';
-    case 'done':
-      return 'green';
-    case 'review':
-      return 'blue';
-    case 'in-progress':
-      return 'yellow';
-    default:
-      return '';
-  }
 }
 
 // Add event listeners
@@ -172,3 +157,4 @@ taskManager.loadTasksFromLocalStorage();
 
 // Render initial tasks
 taskManager.render();
+
