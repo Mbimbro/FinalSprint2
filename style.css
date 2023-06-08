@@ -67,15 +67,6 @@
     color: #fff;
     border: none;
   }
-
-  #update-task-btn {
-    background-color: #f0ad4e;
-
-  }
-  #cancel-update-btn {
-    background-color: #d9534f;
-
-  }
   
   div#date {
     margin-left: 1080px;
