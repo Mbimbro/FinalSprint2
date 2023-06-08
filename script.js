@@ -18,17 +18,17 @@ markTaskAsDone(id) {
 
 
   // Method to add a new task
-  addTask(name, description, assignedTo, dueDate, status) {
-    this.tasks.push({
-      id: this.currentId++,
-      name: name,
-      description: description,
-      assignedTo: assignedTo,
-      dueDate: dueDate,
-      status: status,
-    });
-    this.updateLocalStorage();
-  }
+addTask(name, description, assignedTo, dueDate, status) {
+  this.tasks.unshift({
+    id: this.currentId++,
+    name: name,
+    description: description,
+    assignedTo: assignedTo,
+    dueDate: dueDate,
+    status: status,
+  });
+  this.updateLocalStorage();
+}
 
   // Method to delete a task
   deleteTask(id) {
