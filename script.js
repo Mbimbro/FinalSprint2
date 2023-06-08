@@ -74,7 +74,7 @@ class TaskManager {
           <button class="done-button" data-task-id="${task.id}">Mark as Done</button>
         </td>
       `;
-
+      
       taskListContainer.appendChild(row);
     });
   }
