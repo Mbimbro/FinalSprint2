@@ -10,7 +10,7 @@ markTaskAsDone(id) {
   const taskIndex = this.tasks.findIndex(task => task.id === id);
   if (taskIndex !== -1) {
     const doneTask = this.tasks.splice(taskIndex, 1)[0];
-    doneTask.status = "done";
+    doneTask.status = "Done";
     this.tasks.push(doneTask);
     this.updateLocalStorage();
   }
