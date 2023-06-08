@@ -43,6 +43,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    background-color: transparent;
   }
   
   th,
@@ -75,21 +76,4 @@
   }
 #footer{
     color:white;
-}
-
-/* Styles for the task status colors */
-#task-list tr.red {
-  color: red;
-}
-
-#task-list tr.green {
-  color: green;
-}
-
-#task-list tr.blue {
-  color: blue;
-}
-
-#task-list tr.yellow {
-  color: yellow;
 }
