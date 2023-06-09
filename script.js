@@ -1,4 +1,3 @@
-//TaskManager class for managing tasks
 class TaskManager {
     constructor() {
       this.tasks = [];
@@ -17,15 +16,26 @@ class TaskManager {
     }
   
     deleteTask(id) {
-      const taskIndex = this.tasks.findIndex(task => task.id === id);
+      const taskIndex = this.tasks.findIndex((task) => task.id === id);
       this.tasks.splice(taskIndex, 1);
+    }
+  
+    updateTask(id, updatedTask) {
+      const task = this.tasks.find((task) => task.id === id);
+      if (task) {
+        task.name = updatedTask.name;
+        task.description = updatedTask.description;
+        task.assignedTo = updatedTask.assignedTo;
+        task.dueDate = updatedTask.dueDate;
+        task.status = updatedTask.status;
+      }
     }
   
     render() {
       const taskListContainer = document.getElementById('task-list');
       taskListContainer.innerHTML = '';
   
-      this.tasks.forEach(task => {
+      this.tasks.forEach((task) => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${task.name}</td>
@@ -40,6 +50,18 @@ class TaskManager {
         `;
   
         taskListContainer.appendChild(row);
+      });
+  
+      // Add event listeners to the new buttons
+      const editButtons = document.querySelectorAll('.edit-button');
+      const deleteButtons = document.querySelectorAll('.delete-button');
+  
+      editButtons.forEach((button) => {
+        button.addEventListener('click', handleEditTask);
+      });
+  
+      deleteButtons.forEach((button) => {
+        button.addEventListener('click', handleDeleteTask);
       });
     }
   }
@@ -94,50 +116,97 @@ class TaskManager {
   }
   
   // Function to handle task deletion
-  function deleteTask(event) {
+  function handleDeleteTask(event) {
     const taskId = Number(event.target.dataset.taskId);
     taskManager.deleteTask(taskId);
     taskManager.render();
   }
   
-  // Add event listeners
-  const taskForm = document.getElementById('task-form');
-  const taskTable = document.getElementById('task-table');
+  // Function to handle task editing
+  function handleEditTask(event) {
+    const taskId = Number(event.target.dataset.taskId);
+    const task = taskManager.tasks.find((task) => task.id === taskId);
   
-  taskForm.addEventListener('submit', addTask);
-  taskTable.addEventListener('click', event => {
-    if (event.target.classList.contains('delete-button')) {
-      deleteTask(event);
+    // Populate the form with task data
+    const nameInput = document.getElementById('task-name');
+    const descriptionInput = document.getElementById('task-description');
+    const assignedToInput = document.getElementById('assigned-to');
+    const dueDateInput = document.getElementById('due-date');
+    const statusInput = document.getElementById('status');
+  
+    nameInput.value = task.name;
+    descriptionInput.value = task.description;
+    assignedToInput.value = task.assignedTo;
+    dueDateInput.value = task.dueDate;
+    statusInput.value = task.status;
+  
+    // Replace form submit event listener with updateTask
+    const taskForm = document.getElementById('task-form');
+    taskForm.removeEventListener('submit', addTask);
+    taskForm.addEventListener('submit', updateTask);
+    taskForm.setAttribute('data-task-id', taskId);
+  }
+  
+  // Function to handle task update
+  function updateTask(event) {
+    event.preventDefault();
+  
+    // Get the form input values
+    const nameInput = document.getElementById('task-name');
+    const descriptionInput = document.getElementById('task-description');
+    const assignedToInput = document.getElementById('assigned-to');
+    const dueDateInput = document.getElementById('due-date');
+    const statusInput = document.getElementById('status');
+  
+    // Validate the name input
+    const name = nameInput.value.trim();
+    const description = descriptionInput.value.trim();
+    const assignedTo = assignedToInput.value.trim();
+  
+    if (name === '' || name.length > 8) {
+      alert('Task Name must not be empty and should not exceed 8 characters.');
+      return;
+    } else if (description === '' || description.length > 15) {
+      alert('Add some relevant description and not longer than 15 characters.');
+      return;
+    } else if (assignedTo === '' || assignedTo.length > 8) {
+      alert('Assigned To field must not be empty and should not exceed 8 characters.');
+      return;
     }
-  });
+  
+    const taskId = Number(event.target.dataset.taskId);
+    const updatedTask = {
+      name: name,
+      description: description,
+      assignedTo: assignedTo,
+      dueDate: dueDateInput.value,
+      status: statusInput.value,
+    };
+  
+    // Update the task in the task manager
+    taskManager.updateTask(taskId, updatedTask);
+  
+    // Clear the form inputs
+    nameInput.value = '';
+    descriptionInput.value = '';
+    assignedToInput.value = '';
+    dueDateInput.value = '';
+    statusInput.value = 'todo';
+  
+    // Reset the form and event listener
+    const taskForm = document.getElementById('task-form');
+    taskForm.removeEventListener('submit', updateTask);
+    taskForm.addEventListener('submit', addTask);
+    taskForm.removeAttribute('data-task-id');
+  
+    // Render the tasks
+    taskManager.render();
+  }
+  
+  // Add event listener to the form
+  const taskForm = document.getElementById('task-form');
+  taskForm.addEventListener('submit', addTask);
   
   // Render initial tasks
   taskManager.render();
-
-
-  //date
-  (function() {  
-    let currentDate = new Date();
-
-    let dateString = currentDate.getDate() + "/" 
-        + String(currentDate.getMonth() + 1).padStart(2, '0') + "/" 
-        + String(currentDate.getFullYear()).padStart(2, '0');
-
-    document.getElementById('date').textContent = dateString;
-
-})();  
-
-//clock
-setInterval (() => {
-    d = new Date();
-    htime = d.getHours();
-    mtime = d.getMinutes();
-    stime = d.getSeconds();
-    hrotation = 30*htime + mtime/2;
-    mrotation = 6*mtime;
-    srotation = 6*stime;
-    
-    hour.style.transform = `rotate(${hrotation}deg)`;
-    minute.style.transform = `rotate(${mrotation}deg)`;
-    second.style.transform = `rotate(${srotation}deg)`;
-    }, 1000);
+  
