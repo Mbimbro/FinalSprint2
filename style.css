@@ -1,83 +1,79 @@
-*
-{
-    margin:0;
-    padding:0;
-    overflow: scroll;
+* {
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
 }
-#nav{
-    display: flex;
-    flex-wrap: inherit;
-    align-items: center;
-    justify-content: space-between;
-    background-image: url('./images/nav.webp');
-    background-repeat: no-repeat;
-    background-size: cover;
 
+#nav {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url('./images/nav.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-#main{
-    display:flex;
+
+#main {
+  display: flex;
 }
-#left{
-    padding:20px 26px;
-    width: 30%;
-    height: 70vh;
-    background-image: url('./images/left.jpeg');
+
+#left {
+  padding: 20px 26px;
+  width: 30%;
+  height: 70vh;
+  background-image: url('./images/left.jpeg');
 }
+
 #right {
-   
-    width: 70%;
-    padding: 40px 20px;
-    background-image: url('./images/right.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
+  width: 70%;
+  padding: 40px 20px;
+  background-image: url('./images/right.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
 
 .container {
-    max-width: 200px;
-    margin: 12px 20px;
-    display:flex;
-    justify-content: center;
-    }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: transparent;
-  }
-  
-  th,
-  td {
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .edit-button {
-    background-color: #f0ad4e;
-    color: #fff;
-    border: none;
-  }
-  
-  .delete-button {
-    background-color: #d9534f;
-    color: #fff;
-    border: none;
-  }
-  
-  div#date {
-    margin-left: 1080px;
-    font-size: 25px;
-    color:#101011;
-  }
-#footer{
-    color:white;
+  max-width: 200px;
+  margin: 12px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-.done {
-  color: green;
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #f0ad4e;
+  color: #fff;
+  border: none;
+}
+
+.delete-button {
+  background-color: #d9534f;
+  color: #fff;
+  border: none;
+}
+
+div#date {
+  margin-left: 1080px;
+  font-size: 25px;
+  color: #101011;
+}
+
+#footer {
+  color: white;
 }

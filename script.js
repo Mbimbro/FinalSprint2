@@ -16,7 +16,6 @@ markTaskAsDone(id) {
   }
 }
 
-
   // Method to add a new task
 addTask(name, description, assignedTo, dueDate, status) {
   this.tasks.unshift({
@@ -157,4 +156,3 @@ taskManager.loadTasksFromLocalStorage();
 
 // Render initial tasks
 taskManager.render();
-

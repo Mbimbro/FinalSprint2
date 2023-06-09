@@ -2,99 +2,99 @@
 <html lang="en-US" data-theme="dark:dark light:light" data-color-mode="light">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css"
-        integrity="sha384-PJsj/BTMqILvmcej7ulplguok8ag4xFTPryRq8xevL7eBYSmpXKcbNVuy+P0RMgq" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css"
+    integrity="sha384-PJsj/BTMqILvmcej7ulplguok8ag4xFTPryRq8xevL7eBYSmpXKcbNVuy+P0RMgq" crossorigin="anonymous">
 
-    <title> Task Planner </title>
-    <link href="clockstyle.css" type="text/css" rel="stylesheet">
-    <link href="style.css" type="text/css" rel="stylesheet">
+  <title>Task Planner</title>
+  <link href="clockstyle.css" type="text/css" rel="stylesheet">
+  <link href="style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-    <!--navigation bar-->
-    <div id="nav">
-        <nav class="navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Task Planner App</a>
-                <div id="date">date</div>
-                <span class="nav justify-content-center">
-                    <div id="clockContainer">
-                        <div id="hour"></div>
-                        <div id="minute"></div>
-                        <div id="second"></div>
-                    </div>
-                </span>
-            </div>
-    </div>
+  <!--navigation bar-->
+  <div id="nav">
+    <nav class="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Task Planner App</a>
+        <div id="date">date</div>
+        <span class="nav justify-content-center">
+          <div id="clockContainer">
+            <div id="hour"></div>
+            <div id="minute"></div>
+            <div id="second"></div>
+          </div>
+        </span>
+      </div>
+  </div>
 
-    </nav>
-    </div>
-    <div id="main">
-        <div id="left">
+  </nav>
+  </div>
+  <div id="main">
+    <div id="left">
 
-            <form id="task-form">
-                <div>
-                    <label for="task-name">Task Name:</label>
-                    <input type="text" id="task-name" placeholder="Enter Task Name" required>
-                </div><br>
-                <div>
-                    <label for="task-description">Task Description:</label>
-                    <textarea id="task-description" placeholder="Enter Task Description"></textarea>
-                </div><br>
-                <div>
-                    <label for="assigned-to">Assigned To:</label>
-                    <input type="text" id="assigned-to" placeholder="Enter Assigned To">
-                </div><br>
-                <div>
-                    <label for="due-date">Due Date:</label>
-                    <input type="date" id="due-date">
-                </div><br>
-                <div>
-                    <label for="status">Status:</label>
-                    <select id="status">
-                        <option value="todo">To Do</option>
-                        <option value="in-progress">In Progress</option>
-                        <option value="review">Review</option>
-                        <option value="done">Done</option>
-                    </select>
-                </div><br>
-                <div>
-                    <button type="submit" id="add-task-btn" class="btn btn-dark">Add Task</button>
-                </div>
-            </form><br>
-
-
+      <form id="task-form">
+        <div>
+          <label for="task-name">Task Name:</label>
+          <input type="text" id="task-name" placeholder="Enter Task Name" required>
+        </div><br>
+        <div>
+          <label for="task-description">Task Description:</label>
+          <textarea id="task-description" placeholder="Enter Task Description"></textarea>
+        </div><br>
+        <div>
+          <label for="assigned-to">Assigned To:</label>
+          <input type="text" id="assigned-to" placeholder="Enter Assigned To">
+        </div><br>
+        <div>
+          <label for="due-date">Due Date:</label>
+          <input type="date" id="due-date">
+        </div><br>
+        <div>
+          <label for="status">Status:</label>
+          <select id="status">
+            <option value="todo">To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="review">Review</option>
+            <option value="done">Done</option>
+          </select>
+        </div><br>
+        <div>
+          <button type="submit" id="add-task-btn" class="btn btn-dark">Add Task</button>
         </div>
-        <div id="right">
+      </form><br>
 
-            <table id="task-table" class="table table-dark">
-                <thead>
-                    <tr>
-                        <th>Task Name</th>
-                        <th>Description</th>
-                        <th>Assigned To</th>
-                        <th>Due Date</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="task-list"></tbody>
-            </table>
-        </div>
 
     </div>
-    <div id="footer" class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
-        Created by Manpreet, Rudra & Rashmi;
+    <div id="right">
+
+      <table id="task-table" class="table table-dark">
+        <thead>
+          <tr>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Assigned To</th>
+            <th>Due Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="task-list"></tbody>
+      </table>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+
+  </div>
+  <div id="footer" class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+    Created by Manpreet, Rudra & Rashmi;
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
